@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace purgeoldfiles
 {
@@ -26,9 +28,12 @@ namespace purgeoldfiles
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            
         }
-        long totalsize = 0;
+
+
+            //declear public variables
+            long totalsize = 0;
         string diffdays = "";
         string fullpath = "";
         int deletesum = 0;
@@ -118,6 +123,22 @@ namespace purgeoldfiles
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            DirectoryInfo d = new DirectoryInfo(@".\");
+
+            //DateTime creation = File.GetCreationTime(@"C:\test.txt");
+            FileInfo[] Files = d.GetFiles("*.xml"); //Getting Text files
+            doc.Load(Files[0].ToString());
+            XmlNode xmldirectorypath = doc.DocumentElement.SelectSingleNode("/settings/xmldirectorypath");
+            directorytext.Text = xmldirectorypath.InnerText.Trim();
+            XmlNode xmlmaxsize = doc.DocumentElement.SelectSingleNode("/settings/xmlmaxsize");
+            maxsize.Text= xmlmaxsize.InnerText.Trim();
+            XmlNode xmlexpireday = doc.DocumentElement.SelectSingleNode("/settings/xmlexpireday");
+            expireday.Text = xmlexpireday.InnerText.Trim();
         }
     }
 }

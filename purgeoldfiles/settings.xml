@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<settings>
+    <xmldirectorypath>
+	A:\
+	</xmldirectorypath>
+	<xmlmaxsize>
+	7777
+	</xmlmaxsize>
+	<xmlexpireday>
+	6666
+	</xmlexpireday>
+</settings>
